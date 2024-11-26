@@ -9,6 +9,16 @@ urg_node
 - ROS2:
    - Galactic, Humble, Rolling: [ros2-devel](https://github.com/ros-drivers/urg_node/tree/ros2-devel)
 
+
+### Camera Setup
+
+[Setup Tutorial](https://www.finnrietz.dev/linux/hokuyo-ros-setup/)
+
+Install ROS package
+```sh
+sudo apt-get install ros-humble-urg-node
+```
+
 ### LaserScan Visualization
 
 Until the launch API is sorted out, there are two ways to view the laserscan in RViz:
