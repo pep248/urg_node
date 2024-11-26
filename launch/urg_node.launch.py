@@ -12,7 +12,9 @@ from launch_ros.actions import Node
 
 
 def generate_launch_description():
+    
     urg_node_dir = get_package_share_directory('urg_node')
+    
     launch_description = LaunchDescription([
         DeclareLaunchArgument(
             'sensor_interface',
@@ -21,7 +23,7 @@ def generate_launch_description():
 
     def expand_param_file_name(context):
         param_file = os.path.join(
-                urg_node_dir, 'launch',
+                urg_node_dir, 'config',
                 'urg_node_' + context.launch_configurations['sensor_interface'] + '.yaml')
         if os.path.exists(param_file):
             return [SetLaunchConfiguration('param', param_file)]
@@ -30,9 +32,13 @@ def generate_launch_description():
     launch_description.add_action(param_file_path)
 
     hokuyo_node = Node(
-        package='urg_node', node_executable='urg_node', output='screen',
+        package='urg_node',
+        executable='urg_node_driver',
+        output='screen',
         parameters=[LaunchConfiguration('param')]
-        )
+    )
 
     launch_description.add_action(hokuyo_node)
     return launch_description
+
+# ros2 launch urg_node urg_node.launch.py sensor_interface:=ethernet

@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="hokuyo_ust10" xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:macro name="hokuyo_ust10_mount" params="prefix topic parent_link min_angle:=-2.35619 max_angle:=2.35619 *origin">
 
     <xacro:macro name="hokuyo_ust10" params="frame:=laser topic:=scan sample_size:=720 update_rate:=50
@@ -84,4 +84,11 @@
 
   </xacro:macro>
 
+  <!-- Create a base_link and use the macro -->
+  <!-- <link name="base_link"/> -->
+  
+  <!-- Example usage of the macro -->
+  <!-- <xacro:hokuyo_ust10_mount prefix="laser" topic="scan" parent_link="base_link">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:hokuyo_ust10_mount> -->
 </robot>

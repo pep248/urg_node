@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<robot name="hokuyo_laser" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Include the hokuyo_ust10 xacro -->
+  <xacro:include filename="$(find urg_node)/urdf/hokuyo_ust10.urdf.xacro"/>
+
+  <!-- Define material -->
+  <material name="dark_grey">
+    <color rgba="0.3 0.3 0.3 1"/>
+  </material>
+
+  <link name="world"/>
+
+  <!-- <link name="base_link"/>
+
+  <joint name="world_to_base" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="world"/>
+    <child link="base_link"/>
+  </joint> -->
+
+  <!-- Use the hokuyo_ust10_mount macro -->
+  <xacro:hokuyo_ust10_mount prefix="hokuyo" topic="scan" parent_link="world">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </xacro:hokuyo_ust10_mount>
+
+</robot>
