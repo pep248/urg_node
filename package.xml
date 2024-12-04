@@ -30,6 +30,7 @@
   <depend>std_srvs</depend>
   <depend>urg_c</depend>
   <depend>urg_node_msgs</depend>
+  <depend>tf_transformations</depend>
 
   <exec_depend>urdf</exec_depend>
 

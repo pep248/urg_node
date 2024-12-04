@@ -1,11 +1,11 @@
 urg_node:
   ros__parameters:
-    angle_max: 3.14
-    angle_min: -3.14
+    angle_max: +2.356125
+    angle_min: -1.57075
     ip_address: "192.168.0.10"
     ip_port: 10940
     serial_baud: 115200
-    laser_frame_id: "laser"
+    laser_frame_id: "hokuyo_laser"
     calibrate_time: false
     default_user_latency: 0.0
     diagnostics_tolerance: 0.05
@@ -16,3 +16,46 @@ urg_node:
     publish_multiecho: false
     cluster: 1
     skip: 0
+
+# INSTRUCTIONS TO CONFIGURE THE LIDAR NETWORK
+
+# The ethernet adapter has IP 192.168.0.40, while the lidar itself has IP 192.168.0.10
+
+# Configure the adapter:
+
+# route -n
+# sudo nano /etc/netplan/01-netcfg.yaml
+
+# # network:
+#   version: 2
+#   ethernets:
+#     enx00e04c7804c4: # your lidar adapter
+#       dhcp4: false
+#       optional: true
+#       addresses:
+#         - 192.168.0.40/24
+#       gateway4: 0.0.0.0
+#       nameservers:
+#         addresses:
+#           - 8.8.8.8
+
+# sudo netplan apply
+
+# take out the privileges of the nwe adapter so we don't loose internet connection
+
+# sudo ifmetric eth0 0
+# sudo ifmetric enx00e04c7804c4 1024
+
+
+# To reset the network interfaces, use this post:
+
+# https://stackoverflow.com/questions/62314789/no-internet-connection-on-wsl-ubuntu-windows-subsystem-for-linux
+
+# # Replace the nameserver
+# sudo rm /etc/resolv.conf
+# sudo bash -c 'echo "nameserver 1.1.1.1" > /etc/resolv.conf'
+
+# # Turn off generateResolvConf
+# sudo bash -c 'echo "[network]" > /etc/wsl.conf'
+# sudo bash -c 'echo "generateResolvConf = false" >> /etc/wsl.conf'
+# sudo chattr +i /etc/resolv.conf
