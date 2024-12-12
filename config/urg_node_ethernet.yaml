@@ -1,6 +1,6 @@
 urg_node:
   ros__parameters:
-    angle_max: +2.356125
+    angle_max: +1.57075 #+2.356125
     angle_min: -1.57075
     ip_address: "192.168.0.10"
     ip_port: 10940
