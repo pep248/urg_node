@@ -47,7 +47,7 @@ install(PROGRAMS
 install(
   DIRECTORY
     rviz
-    meshes 
+    meshes
     urdf
     config
   DESTINATION
